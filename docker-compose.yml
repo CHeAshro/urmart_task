@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  db:
+    image: mysql/mysql-server:8.0.23
+    restart: always
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: urmart
+      MYSQL_USER: urmart
+      MYSQL_PASSWORD: 1234
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
